@@ -1,24 +1,27 @@
 import os 
 import shutil
 import re
+from typing import List
 
 
 def copy_file(where_from, where_to):
-    '''check this method'''
+    '''copies file'''
     shutil.copy(where_from, where_to)
 
-def copy_solution(path_to_solution, student_name, solution):
+def copy_solution(path_to_solution, student_name, ):
+    '''copies from path_to_solution to particular student's file'''
     # where_from = os.path.join(dir_to_copy, current_dir, solution)
     where_to = os.path.join(os.getcwd(), "copied_files", f"{student_name}.py")
     # print(where_to)
     copy_file(path_to_solution, where_to)
+    print(f"copied {student_name} solution")
 
-def check_out_tokens(path_to_solution, *args):
-    tokens = set
+def check_out_tokens(path_to_solution, tokens: List[str]):
+    """shecks a partucular solution on for forbiden tokens"""
     with open(path_to_solution, "r+", encoding='utf-8') as solution:
         code = solution.read()
         found_tokens = []
-        for token in args:
+        for token in tokens:
 
             pattern = r"{}".format(f"({token})")
             match = re.findall(pattern, code)
