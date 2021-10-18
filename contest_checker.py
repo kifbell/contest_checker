@@ -52,33 +52,37 @@ def check_bullshit(contest_number: int):
 
 
 def read_contest_number() -> int:
-    '''input contest number'''
+    """input contest number"""
     n = "This\ncannot\tbe{filename}\n\n"
 
     while not file_exists(generate_standings_filename(n)):
         n = int(input("Insert the number of contest file (contest_<num>.csv): "))
     return n
 
+
 def check_student_names_file_exists():
     if not file_exists("student_names.csv"):
         raise Exception("File with student names (student_names.csv) is not found!")
 
+
 def create_empty_dir(dir_to_copy):
-    '''creates empty dir to copy solutions in'''
+    """creates empty dir to copy solutions in"""
     try:
-        os.rmdir(dir_to_copy) 
+        os.rmdir(dir_to_copy)
     except:
         pass
     os.makedirs(dir_to_copy, exist_ok=True)
 
+
 def get_student_name(current_dir):
-    '''extract student name surname from dir'''
+    """extract student name surname from dir"""
     pat = r".+/(.+ .+[ .]*)-"
     match = re.match(pat, current_dir[30:])
     try:
         return match.group(1)
     except:
-        print("problem with " + current_dir) 
+        print("problem with " + current_dir)
+
 
 def check_files(path, tokens: List[str]):
     """main func. It goes through all the solutions to find those with forbiden methods"""
@@ -94,10 +98,11 @@ def check_files(path, tokens: List[str]):
                     path_to_solution = os.path.join(dir_to_copy, current_dir, file)
                     found_tokens = fop.check_out_tokens(path_to_solution, tokens)
 
-                    if found_tokens:    
+                    if found_tokens:
                         fop.copy_solution(path_to_solution, student_name)
 
-    print(f'all the solutions have been checked')
+    print(f"all the solutions have been checked")
+
 
 if __name__ == "__main__":
     path = "/Users/fuckingbell/Downloads/submits"
@@ -108,6 +113,3 @@ if __name__ == "__main__":
         tokens = list(input("enter tokens: ").split())
 
     check_files(path, tokens)
-
-
-
