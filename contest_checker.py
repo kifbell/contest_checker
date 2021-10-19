@@ -32,7 +32,7 @@ def generate_standings_filename(contest_number: int) -> str:
     return f"standings_{contest_number}.csv"
 
 
-def check_bullshit(contest_number: int):
+def marks_to_xlsx(contest_number: int):
     """truns students' standings into a xlsx table"""
     df = pd.read_csv(generate_standings_filename(contest_number), index_col=1)
     df = df.iloc[:, 2:-2]
@@ -66,7 +66,7 @@ def check_student_names_file_exists():
 def create_empty_dir(dir_to_copy):
     '''creates empty dir to copy solutions in'''
     try:
-        os.rmdir(dir_to_copy) 
+        shutil.rmtree(dir_to_copy)
     except:
         pass
     os.makedirs(dir_to_copy, exist_ok=True)
