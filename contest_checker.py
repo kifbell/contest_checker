@@ -32,7 +32,7 @@ def generate_standings_filename(contest_number: int) -> str:
     return f"standings_{contest_number}.csv"
 
 
-def check_bullshit(contest_number: int):
+def marks_to_xlsx(contest_number: int):
     """truns students' standings into a xlsx table"""
     df = pd.read_csv(generate_standings_filename(contest_number), index_col=1)
     df = df.iloc[:, 2:-2]
@@ -100,6 +100,7 @@ def check_files(path, tokens: List[str]):
     print(f'all the solutions have been checked')
 
 if __name__ == "__main__":
+    # marks_to_xlsx()
     path = "/Users/fuckingbell/Downloads/submits"
     if not path:
         dir_name = input("enter archive dir: ")
@@ -108,6 +109,3 @@ if __name__ == "__main__":
         tokens = list(input("enter tokens: ").split())
 
     check_files(path, tokens)
-
-
-
