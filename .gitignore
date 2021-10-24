@@ -6,6 +6,7 @@
 *.xls
 *.xlsx
 *.csv
+!students_names.csv
 
 ### Random stuff ###
 .DS_Store
