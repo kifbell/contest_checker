@@ -8,6 +8,13 @@
 *.csv
 !students_names.csv
 
+
+### folders ###
+!__pycache__/
+!copied_files/
+!.ipynb_checkpoints/
+!venv/
+
 ### Random stuff ###
 .DS_Store
 
