@@ -9,11 +9,12 @@
 !students_names.csv
 
 
-### folders ###
+### exclude folders ###
 !__pycache__/
 !copied_files/
 !.ipynb_checkpoints/
 !venv/
+!.idea/
 
 ### Random stuff ###
 .DS_Store
